@@ -6,7 +6,7 @@
 - Database
 - Front & Back End
 
-Preliminary Ideas
+# Preliminary Ideas
 - Mass text software
 - Countdown app
 - Card game (something like quiplash, uno)
