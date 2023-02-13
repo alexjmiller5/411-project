@@ -19,6 +19,7 @@
 
 ### Current Best Ideas
 - App with water fountain locations
-  - Name: **FREE WATER**
+  - App Name: **FREE WATER**
     - Free can double as an adjective and a verb
+  - Mobile app with locations of water fountains on BU campus, with the expressed purpose of helping people get water for free, and saving the environment!
 - BeMeal (Copy of bereal for meals) (set times for meal picture reminders)
