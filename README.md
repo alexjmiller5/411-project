@@ -17,7 +17,7 @@
 - BeMeal (Copy of bereal for meals) (set times for meal picture reminders)
 - Export StudentLink class schedule to Google Calendar
 
-##### Current Best Ideas
+### Sifted Best Ideas
 - App with water fountain locations
   - App Name: **FREE WATER**
     - Free can double as an adjective and a verb
