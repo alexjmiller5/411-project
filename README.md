@@ -16,3 +16,7 @@
 - App to connect people to play pickup sports if you want to
 - BeMeal (Copy of bereal for meals) (set times for meal picture reminders)
 - Export StudentLink class schedule to Google Calendar
+
+# Current Best Ideas
+- App with water fountain locations
+- BeMeal (Copy of bereal for meals) (set times for meal picture reminders)
