@@ -2,3 +2,6 @@ ChatGPT chat app
   -We will create a chat app that will allow users to direclty chat with openAI's ChatGPT ai chat bot
   -Users will need to create account for OAuth
   -An additional API we can call is wastons sentiment analysis for chat bots response
+  -The database will store user's login information as well as maybe a score of how kind they are based on what they ask the bot
+  -The front end will be a simple messenger application with where the user can create a contact by adding a name and descirptin, we will then store that and everytime   
+   we call chatgpt we will first feed the prompt you are a *descirption* named *name*, questio 
