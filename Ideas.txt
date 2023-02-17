@@ -1,0 +1,4 @@
+ChatGPT chat app
+  -We will create a chat app that will allow users to direclty chat with openAI's ChatGPT ai chat bot
+  -Users will need to create account for OAuth
+  -An additional API we can call is wastons sentiment analysis for chat bots response
