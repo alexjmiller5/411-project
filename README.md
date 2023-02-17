@@ -17,9 +17,13 @@
 - BeMeal (Copy of bereal for meals) (set times for meal picture reminders)
 - Export StudentLink class schedule to Google Calendar
 
-### Sifted Best Ideas
-- App with water fountain locations
-  - App Name: **FREE WATER**
-    - Free can double as an adjective and a verb
-  - Mobile app with locations of water fountains on BU campus, with the expressed purpose of helping people get water for free, and saving the environment!
-- BeMeal (Copy of bereal for meals) (set times for meal picture reminders)
+# Idea #1: **FREE WATER**
+
+- Mobile app that tells you the location of the nearest water fountain on a college campus
+- Has the expressed purpose of helping people get water for free, and saving the environment from plastic water bottles!
+- **FREE can double as an adjective and a verb**
+- Login using your school email (OAuth)
+- Use GoogleMaps API to show how to get to the water fountain (First API)
+- Swift mobile app (Front End)
+- Store user information about favorite water fountain locations and personal profile information (Database)
+
