@@ -28,6 +28,7 @@
 - Swift mobile app (Front End)
 - Store user information about favorite water fountain locations and personal profile information (Database)
 - Water boittle saved counter
+- Use floor plans of buildings to spot water fountains
 
 # Idea #2 : **ChatGPT MESSENGER APP**
 - We will create a chat app that will allow users to directly chat an AI posing as with anyone they wish
