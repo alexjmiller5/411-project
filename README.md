@@ -24,8 +24,10 @@
 - **FREE can double as an adjective and a verb**
 - Login using your school email (OAuth)
 - Use GoogleMaps API to show how to get to the water fountain (First API)
+- Environtal facts API (https://www.epa.gov/enviro/envirofacts-data-service-api)
 - Swift mobile app (Front End)
 - Store user information about favorite water fountain locations and personal profile information (Database)
+- Water boittle saved counter
 
 # Idea #2 : **ChatGPT MESSENGER APP**
 - We will create a chat app that will allow users to directly chat an AI posing as with anyone they wish
