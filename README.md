@@ -40,18 +40,19 @@
 - To generate responses we will feed the following prompt to ChatGPT: you are a person described by the following description, *description*, your name is *name*, so far in your conversation I have been nice or mean to you on a scale of *current sentiment score* out of *maximum sentiment score*, respond to the following *user message*
 
 # Additional Ideas:
-Recipe recommendation application: 
-Users input their dietary preferences, cooking skill level, and available ingredients. (Stored in database)
-Two data sets via API: 
-1. Nutritional information about various ingredients
-2. Recipes
-Third-party authentication will be implemented to allow users to log in with Google or Facebook using OAuth.
-Front end: app - drop-down menus to select dietary preferences, cooking skill level, and available ingredients out of given options, displays results.
+# Recipe recommendation application: 
+- Users input their dietary preferences, cooking skill level, and available ingredients. (Stored in database)
+- Two data sets via API: 
+  1. Nutritional information about various ingredients
+  2. Recipes
+- Third-party authentication will be implemented to allow users to log in with Google or Facebook using OAuth.
+- Front end: app - drop-down menus to select dietary preferences, cooking skill level, and available ingredients out of given options, displays results.
 
-Travel planning application: 
-Users input their travel destination, budget, and preferences. (Stored in database)
-Two data sets via API: 
-1. Travel information such as popular tourist destinations, local events, and user ratings for activities and accommodations
-2. Local weather conditions
-Third-party authentication will be implemented to allow users to log in with Google or Facebook using OAuth.
-Front end: app or website - users input travel destination, budget, and preferences and a timetable with activities and their costs are shown. Alternatively, users could choose not to input their travel destination, and a world map would be shown with possible destinations highlighted with extra information when clicked on.
+# Travel planning application: 
+- Users input their travel destination, budget, and preferences. (Stored in database)
+- Two data sets via API: 
+  1. Travel information such as popular tourist destinations, local events, and user ratings for activities and accommodations
+  2. Local weather conditions
+- Third-party authentication will be implemented to allow users to log in with Google or Facebook using OAuth.
+- Front end: app or website - users input travel destination, budget, and preferences and a timetable with activities and their costs are shown.
+- Alternatively, users could choose not to input their travel destination, and a world map would be shown with possible destinations highlighted with extra information when clicked on.
