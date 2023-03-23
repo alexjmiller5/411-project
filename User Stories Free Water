@@ -24,4 +24,7 @@
   2. Request the floor and ask the user to mark the spot on the building map. 
 
 5. User wants to view eco facts based on app usage 
+ 1. Display screen of all eco facts, we will store the amount of refills for each user and show how many they did and the plastic waste they prevented. 
+ 2. We can also show the amount of money they saved by not buying water bottles
+ 3. Also any other facts such as climate and maybe the apps total bottles saved...
 
