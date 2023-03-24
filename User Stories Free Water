@@ -23,7 +23,7 @@
   3. User can either click on pin to see the building map for each level or once the user is within the boundry of a building
   4. Once the User is in or clicks a building, we show the bottom floor map with pins for each water fountain and then display buttons for each floor 
 
-4. User wants to add local water fountain
+4. User wants to add local water fountain (which isn't shown in the app) to database
   1. Ask user to select the building or enter the location (we will manually select the building)
   2. Request the floor and ask the user to mark the spot on the building map. 
 
