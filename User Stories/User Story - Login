@@ -8,4 +8,3 @@ Story: An existing user wants to log into FreeWater
         Direct User to home screen, button to user story 3,4,5
     - Bad Path: user account cannot be found or password does not match 
         Throw error message requesting user to check inputted info and allow them to try again
-  
