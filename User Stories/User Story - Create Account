@@ -6,5 +6,5 @@ Story: New user wants to create and log into account
     - Good Path: user account does not exist with that email and password fits criteria
         User will be created
     - Bad Path: user account exists with email or email / password is invalid
-        Ohrow error message requesting user to try new email or log into existing account
+        Throw error message requesting user to try new email or log into existing account
   4. Direct User to home screen
