@@ -1,0 +1,9 @@
+Story: User wants to search for local water fountain 
+  1. Request User Location
+    - Good Path: user location access granted 
+      Search for fountains based on user location
+    - Bad path: user location access denied
+      Ask user to select / input their location
+  2. Display Map of local area with pins for each water fountain / building with a water fountain, filter about location from above
+  3. User will either click on pin to see the building map for each level or once the user is within the boundry of a building
+  4. Once the User is in or clicks a building, we show the bottom floor map with pins for each water fountain and then display buttons for each floor 
