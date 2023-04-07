@@ -1,0 +1,7 @@
+npx expo install <package_name>
+
+react-native
+@react-navigation/native
+@react-navigation/native-stack
+expo-auth-session/providers/google
+expo-web-browser
