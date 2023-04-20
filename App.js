@@ -5,11 +5,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StyleSheet } from "react-native";
 
-import Login from './components/Login';
+import Login_Oath from './components/Login_Oauth';
 import Home from './components/Home'
+import WaterMap from './components/WaterMap';
 
 const Stack = createNativeStackNavigator();
-
 
 export default function App() {
   return (
@@ -17,11 +17,17 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen 
           name="Login"
-          component={Login} 
+          component={Login_Oath} 
           options={{ title: 'Freewater' }}
-          props={Stack} 
+          props={Stack}
         />
-        <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen 
+          name="Home" 
+          component={Home}          
+          options={{ title: 'Freewater Home' }}
+          props={Stack}
+        />
+        <Stack.Screen name="WaterMap" component={WaterMap}/>
       </Stack.Navigator>      
     </NavigationContainer>
   );
