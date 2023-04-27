@@ -18,6 +18,7 @@
             "**/*"
         ],
         "ios": {
+            "googleServicesFile": "./GoogleService-Info.plist",
             "supportsTablet": true,
             "bundleIdentifier": "com.bu.freewaterexpo",
             "buildNumber": "1",
