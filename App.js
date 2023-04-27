@@ -5,9 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StyleSheet } from "react-native";
 
-import Login_Oath from './components/Login_Oauth';
+import Login_Oath from './components/Login';
 import Home from './components/Home'
 import WaterMap from './components/WaterMap';
+import Nearest from './components/Nearest';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen 
+        <Stack.Screen
           name="Login"
           component={Login_Oath} 
           options={{ title: 'Freewater' }}
@@ -28,6 +29,12 @@ export default function App() {
           props={Stack}
         />
         <Stack.Screen name="WaterMap" component={WaterMap}/>
+        <Stack.Screen 
+          name="Nearest" 
+          component={Nearest}          
+          options={{ title: 'Nearest Water Fountain'}}
+          props={Stack}
+        />
       </Stack.Navigator>      
     </NavigationContainer>
   );
