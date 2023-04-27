@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
-import MapView, { Polyline } from "react-native-maps";
+import MapView, { Polyline, Marker } from "react-native-maps";
 
 const GOOGLE_MAPS_API_KEY = "AIzaSyAjT2oj1XyOv8yIF6RybC7NBWnUnZL-cBo";
 
@@ -9,8 +9,11 @@ export default function App() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [route, setRoute] = useState([]);
+  const [destination, setDestination] = useState({
+    name: "",
+    instructions: ""
+  });
 
-  // ask the user for permission to use their location, and store it in the location constant
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -19,36 +22,37 @@ export default function App() {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      let location = await Location.watchPositionAsync({}, setLocation);
       setLocation(location);
     })();
-
-    // use the Google Maps API to find the best route to the nearest waterfountain
-    const origin = "42.353808,-71.127289";
-    const destination = "42.3505,-71.1054";
-
-    // ADD CODE WITH WATERFOUNTAIN COORDINATES AND FIND THE CLOSEST ON TO THE ORIGIN AND SET THAT AS THE DESTINATION
-
-    fetch(
-      `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&mode=walking&key=${GOOGLE_MAPS_API_KEY}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const points = data.routes[0].overview_polyline.points;
-        const decodedPoints = decodePolyline(points);
-        setRoute(decodedPoints);
-      });
   }, []);
 
-  // code for accessing the user's location
-  // let text = "Waiting..";
-  // if (errorMsg) {
-  //   text = errorMsg;
-  // } else if (location) {
-  //   text = `Latitude: ${location.coords.latitude}, Longitude: ${location.coords.longitude}`;
-  // }
+  useEffect(() => {
+    if (location != null && location.coords != null) {
+      const originCoords = `${location.coords.latitude},${location.coords.longitude}`;
 
-  // decode the directions to the nearest waterfountain as a "polyline"
+      // query closet water fountain -- replace these variables with the query
+      const destinationCoords = "42.3505,-71.1054";
+      const destinationName = "The fucking GSU";
+      const destinationInstructions = "The GSU water fountain is in the basement, outside the theatre area. There is a staircase and an elevator at the back of the dining room to the right, outside of Basho."
+
+      setDestination({
+        name: destinationName,
+        instructions: destinationInstructions
+      });
+
+      fetch(
+        `https://maps.googleapis.com/maps/api/directions/json?origin=${originCoords}&destination=${destinationCoords}&mode=walking&key=${GOOGLE_MAPS_API_KEY}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const points = data.routes[0].overview_polyline.points;
+          const decodedPoints = decodePolyline(points);
+          setRoute(decodedPoints);
+        });
+    }
+  }, [location]);
+
   const decodePolyline = (encoded) => {
     const polyline = require("@mapbox/polyline");
     const decoded = polyline.decode(encoded);
@@ -59,20 +63,32 @@ export default function App() {
     return coordinates;
   };
 
-  // return the map as the page
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: 42.353808,
-          longitude: -71.127289,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.015,
-        }}
-      >
-        <Polyline coordinates={route} strokeWidth={4} strokeColor="#0088FF" />
-      </MapView>
+      {location != null && location.coords != null && (
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.015,
+          }}
+        >
+          <Polyline coordinates={route} strokeWidth={4} strokeColor="#0088FF" />
+
+          <Marker
+            coordinate={{
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+            }}
+          />
+        </MapView>
+      )}
+      <View style={styles.infoWrapper}>
+        <Text style={styles.title}>{destination.name}</Text>
+        <Text style={styles.description}>{destination.instructions}</Text>
+      </View>
     </View>
   );
 }
@@ -85,5 +101,18 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+    infoWrapper: {
+    backgroundColor: '#F0F0F0',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  description: {
+    fontSize: 16,
   },
 });

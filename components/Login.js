@@ -67,7 +67,8 @@ export default function Login({user, navigation}) {
 }
 const styles = StyleSheet.create({
   footerContainer: {
-    flex: 1 / 3,
+    backgroundColor: 'black',
+    flex: 3 / 3,
     alignItems: 'center',
   },
 });
