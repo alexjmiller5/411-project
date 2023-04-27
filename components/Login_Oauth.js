@@ -3,21 +3,33 @@
 // https://docs.expo.dev/guides/google-authentication/
 
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, Image, View, Button } from "react-native";
-import * as WebBrowser from "expo-web-browser";
+import { StyleSheet, Text, Image, View, Button, TextInput, TouchableHighlight } from "react-native";
 import * as Google from "expo-auth-session/providers/google";
 
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import {app, auth, db, baseUrl} from "../firebaseConfig.js"
+
+import {getUserData, createUser, createWaterFountain} from "./REST.js"
 
 const iosClientId = "376469778298-9i9pebmddj05js3csip2b4ofpb1pjtca.apps.googleusercontent.com"
 const expoClientId = "376469778298-d1godfva9j2fg7ioba2kg6drlmgktkiv.apps.googleusercontent.com"
 const androidClientId = ""
 
-//WebBrowser.maybeCompleteAuthSession();
 
 
-export default function Login_Oauth({user, navigation}) {
+
+export default function Login_Oauth({user,navigation}) {
+
+  const [message, setMessage] = useState("");
+
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState(null);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [signInError, setSignInError] = useState(false)
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     androidClientId: androidClientId,
@@ -32,7 +44,7 @@ export default function Login_Oauth({user, navigation}) {
     }
   }, [response, token]);
 
-  const getUserInfo = async () => {
+  async function getUserInfo() {
     try {
       const response = await fetch(
         "https://www.googleapis.com/userinfo/v2/me",
@@ -43,50 +55,135 @@ export default function Login_Oauth({user, navigation}) {
 
       const user = await response.json();
       setUserInfo(user);
+      setEmail(user.email)
+      navigation.navigate("Home")
+      //console.log(getUserData(user.id))
+
     } catch (error) {
       // Add your own error handler here
     }
   };
 
-  const logout = async () => {
-    setUserInfo(null);
+  function logUserIn() {
+    console.log("Using Firebase Auth to create new user for email: ", email)
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        //Sign in
+        const user = userCredential.user;
+        //getUserData(username);
+        //console.log(user.email)
+        navigation.navigate("Home")
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Sign in Error: ", errorCode, "\n ", errorMessage)
+  
+        setSignInError(true)
+    });
   };
 
   return (
     <View style={styles.container}>
-      {userInfo === null ? (
-        <Button
-          title="Sign in with Google"
-          disabled={!request}
-          onPress={() => {
-            promptAsync();
-          }}
-        />
-      ) : (
+      {signInError === false ? (
         <View>
-          <Text style={styles.text}>{userInfo.name}</Text>
-          <Image style={styles.image} source={userInfo.Image}/>
-          <Button title="Home" onPress={() => navigation.navigate('Home')} />        
-          <Button title="Logout" onPress={logout} />        
+          <Text> Email </Text>
+            <TextInput
+                autoCapitalize="none" 
+                style={styles.input} 
+                onChangeText={(value) => setEmail(value)}
+              />
+            <Text> Password </Text>
+            <TextInput 
+                autoCapitalize="none" 
+                style={styles.input} 
+                secureTextEntry={true} 
+                onChangeText={(value) => setPassword(value)}
+              />
+            <Button
+                title="Login"
+                onPress={logUserIn}
+            />
+          <Button
+            title="Sign in with Google"
+            disabled={!request}
+            onPress={() => {
+              promptAsync();
+            }}
+          />
+          <Button
+            title="Create Account"
+            onPress={() => navigation.navigate('CreateAccount')} 
+          />
+        </View>
+      ): (
+        <View>
+          <Text> Email </Text>
+            <TextInput 
+                autoCapitalize="none"
+                style={styles.input} 
+                onChangeText={(value) => setEmail(value)}
+              />
+            <Text> Password </Text>
+            <TextInput 
+                autoCapitalize="none" 
+                style={styles.input} 
+                secureTextEntry={true} 
+                onChangeText={(value) => setPassword(value)}
+              />
+            <Text> Incorrect username or password </Text>
+            <Button
+                title="Login"
+                onPress={logUserIn}
+            />
+          <Button
+            title="Sign in with Google"
+            disabled={!request}
+            onPress={() => {
+              promptAsync();
+            }}
+          />
+          <Button
+            title="Create Account"
+            onPress={() => navigation.navigate('CreateAccount')} 
+          />
         </View>
       )}
-    </View>
+      </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  input: {
+    backgroundColor: "white",
+    borderColor: "gray",
+    width: "100%",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+},
+  buttonContainer: {
+    width: 320,
+    height: 68,
+    marginHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 3,
   },
-  text: {
-    fontSize: 20,
-    fontWeight: "bold",
+  button: {
+    borderRadius: 10,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
-  image: {
-    width: 66,
-    height: 58,
-  }
+  buttonIcon: {
+    paddingRight: 8,
+  },
+  buttonLabel: {
+    color: '#000',
+    fontSize: 16,
+  },
 });
