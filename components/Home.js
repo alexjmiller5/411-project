@@ -3,6 +3,14 @@ import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 import Button from './Button';
 
 export default function Home({user, navigation}) {
+
+  const [userInfo, setUserInfo] = useState(user)
+
+  async function logout() {
+      setUserInfo(null);
+      navigation.navigate("Login");
+  };
+ 
   return (
     <ImageBackground source={require('../assets/bountiful-water.png')} style={styles.backgroundImage}>
       <View style={styles.container}>
@@ -12,6 +20,7 @@ export default function Home({user, navigation}) {
           <Button label="Find Nearest Water Fountain" onPress={() => navigation.navigate('Nearest')} />
           <Button label="Add Nearby Fountains" />
           <Button label="Show Eco Stats" />
+          <Button title="Logout" onPress={logout} />        
         </View>
       </View>
     </ImageBackground>
