@@ -1,44 +1,44 @@
 {
-  "expo": {
-    "name": "freewaterexpo",
-    "slug": "freewaterexpo",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "scheme": "com.bu.freewaterexpo",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.bu.freewaterexpo",
-      "buildNumber": "1",
-      "config": {
-        "googleMapsApiKey": "AIzaSyB6enRqQ3JplZ6vacHwemS_2L0WqkS2-Fw"
-      }
-    },
-    "android": {
-      "package": "com.bu.freewaterexpo",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "0f6b9afd-bf83-4124-b9cb-c47d8125c387"
-      }
+    "expo": {
+        "name": "freewaterexpo",
+        "slug": "freewaterexpo",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "scheme": "com.bu.freewaterexpo",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.bu.freewaterexpo",
+            "buildNumber": "1",
+            "config": {
+                "googleMapsApiKey": "AIzaSyB6enRqQ3JplZ6vacHwemS_2L0WqkS2-Fw"
+            }
+        },
+        "android": {
+            "package": "com.bu.freewaterexpo",
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#FFFFFF"
+            }
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "0f6b9afd-bf83-4124-b9cb-c47d8125c387"
+            }
+        }
     }
-  }
 }
