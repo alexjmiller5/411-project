@@ -7,6 +7,7 @@ export default function Home({user, navigation}) {
     <View style={styles.footerContainer}>
       <Text>Home Screen {user} </Text>
       <Button label="Find Nearby Fountains" onPress={() => navigation.navigate('WaterMap')} />
+      <Button label="Find Nearest Water Fountain" onPress={() => navigation.navigate('Nearest')} />
       <Button label="Add Nearby Fountains" />
       <Button label="Show Eco Stats" />
     </View>
