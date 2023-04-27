@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from "react-native";
 
 import Login_Oath from './components/Login';
+import CreateAccount from './components/CreateAccount';
 import Home from './components/Home'
 import WaterMap from './components/WaterMap';
 import Nearest from './components/Nearest';
@@ -20,6 +21,12 @@ export default function App() {
           name="Login"
           component={Login_Oath} 
           options={{ title: 'Freewater' }}
+          props={Stack}
+        />
+        <Stack.Screen 
+          name="CreateAccount"
+          component={CreateAccount} 
+          options={{ title: 'Create Account' }}
           props={Stack}
         />
         <Stack.Screen 
