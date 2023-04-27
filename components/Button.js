@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   buttonLabel: {
-    color: '#000',
+    color: 'white',
     fontSize: 16,
   },
 });
