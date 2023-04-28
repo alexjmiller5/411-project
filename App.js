@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StyleSheet } from "react-native";
 
-import Login_Oath from './components/Login';
+import Login_Oath from './components/Login_Oauth';
 import CreateAccount from './components/CreateAccount';
 import Home from './components/Home'
 import WaterMap from './components/WaterMap';
