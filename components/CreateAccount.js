@@ -13,12 +13,11 @@ import {auth, baseUrl} from "../firebaseConfig.js"
 import { createUser } from '../backend/REST.js';
 
 import axios from 'axios';
+import Custom_Input from './Custom_Input.js';
+import Custom_Button from './Custom_Button.js';
 
-const iosClientId = "376469778298-9i9pebmddj05js3csip2b4ofpb1pjtca.apps.googleusercontent.com"
-const expoClientId = "376469778298-d1godfva9j2fg7ioba2kg6drlmgktkiv.apps.googleusercontent.com"
-const androidClientId = ""
-
-
+const iosClientId = process.env.iosClientId
+const expoClientId = process.env.expoClientId
 
 export default function CreateAccount({navigation}) {
   //  const [name, setName] = useState("");
@@ -52,7 +51,6 @@ export default function CreateAccount({navigation}) {
 
 
     const [request, response, promptAsync] = Google.useAuthRequest({
-      androidClientId: androidClientId,
       iosClientId: iosClientId,
       expoClientId: expoClientId,
     });
@@ -78,6 +76,7 @@ export default function CreateAccount({navigation}) {
         setEmail(user.email)
         console.log("user enmail:  ", user.email)
         setLoggedIn(true)
+        //navigation.navigate("Home")
        // navigation.navigate("Choose_Username", {email:user.email, navigation: navigation})
       } catch (error) {
         // Add your own error handler here
@@ -101,117 +100,90 @@ export default function CreateAccount({navigation}) {
         });
     };
 
-    return (
+
+    if (loggedIn) {
+      return (
       <View>
-        {loggedIn === true ? (
-          <View>
-            {error === false ? (
-              <View>
-              <Text> Username </Text>
-              <TextInput 
-                  style={styles.input} 
-                  onChangeText={(value) => setUsername(value)}
-              />      
-              <Button style={styles.button} title="Select" onPress={createUserWithUsername}/>
-              </View>
-          ) : (
-              <View>
-              <Text> Username </Text>
-              <TextInput 
-                  style={styles.input} 
-                  onChangeText={(value) => setUsername(value)}
-              />      
-              <Text> Username taken try a new username </Text>
-              <Button style={styles.button} title="Select" onPress={createUserWithUsername}/>
-              </View>
-          )}
-        </View>
+        <Text style={styles.title}> Choose Username </Text>
+        <Custom_Input 
+                label="Username"
+                autoCapitalize="none" 
+                style={styles.input} 
+                onChangeText={(value) => setUsername(value)}
+        />
+        {error === true ? (     
+          <Text> Username taken try a new username </Text>
         ) : (
           <View>
-            {signUpError === true ? (
-            <View>
-                <Text> Username </Text>
-                <TextInput 
-                    autoCapitalize="none" 
-                    style={styles.input} 
-                    onChangeText={(value) => setUsername(value)}
-                />
-                <Text> Email </Text>
-                <TextInput 
-                    autoCapitalize="none" 
-                    style={styles.input} 
-                    onChangeText={(value) => setEmail(value)}
-                />
-                <Text> Email or Username already in use </Text>
-                <Text> Password </Text>
-                <TextInput 
-                    autoCapitalize="none" 
-                    style={styles.input} 
-                    secureTextEntry={true} 
-                    onChangeText={(value) => setPassword(value)}
-                />
-                <Button
-                    title="Create Account"
-                    onPress={signUp}
-                />
-                <Button
-                title="Sign Up with Google"
-                disabled={!request}
-                onPress={() => {
-                  promptAsync();
-                }}
-              />
-                <Button
-                    title="Already have an account?"
-                    onPress={() => navigation.navigate('Login')}
-                />
-              </View>
-              ) : (
-                <View>
-                                <Text> Username </Text>
-                <TextInput 
-                    autoCapitalize="none" 
-                    style={styles.input} 
-                    onChangeText={(value) => setUsername(value)}
-                />
-                <Text> Email </Text>
-                <TextInput 
-                    autoCapitalize="none" 
-                    style={styles.input} 
-                    onChangeText={(value) => setEmail(value)}
-                />
-                <Text> Password </Text>
-                <TextInput 
-                    autoCapitalize="none" 
-                    style={styles.input} 
-                    secureTextEntry={true} 
-                    onChangeText={(value) => setPassword(value)}
-                />
-                <Button
-                    title="Create Account"
-                    onPress={signUp}
-                />
-                <Button
-                title="Sign Up with Google"
-                disabled={!request}
-                onPress={() => {
-                  promptAsync();
-                }}
-              />
-                <Button
-                    title="Already have an account?"
-                    onPress={() => navigation.navigate('Login')}
-                />
-              </View>
-            )}
           </View>
-
         )}
+        <Custom_Button
+              title="Create Account"
+              onPress={createUserWithUsername}
+        />
+      </View>
+      );
+    }
+
+    return (
+      <View>
+          <Text style={styles.title}> Create Account </Text>
+          <Custom_Input 
+              label="Username"
+              autoCapitalize="none" 
+              style={styles.input} 
+              onChangeText={(value) => setUsername(value)}
+          />
+          {error === true ? (     
+            <Text> Username taken try a new username </Text>
+          ) : (
+            <View>
+            </View>
+          )}
+          <Custom_Input 
+              label="Email"
+              autoCapitalize="none" 
+              style={styles.input} 
+              onChangeText={(value) => setEmail(value)}
+          />
+          {signUpError === true ? (     
+            <Text> Email taken </Text>
+          ) : (
+            <View>
+            </View>
+          )}
+          <Custom_Input 
+              label="Password"
+              autoCapitalize="none" 
+              style={styles.input} 
+              secureTextEntry={true} 
+              onChangeText={(value) => setPassword(value)}
+          />
+          <Custom_Button
+              title="Create Account"
+              onPress={signUp}
+          />
+          <Custom_Button
+          title="Sign Up with Google"
+          disabled={!request}
+          onPress={() => {
+            promptAsync();
+          }}
+        />
+          <Custom_Button
+              title="Already have an account?"
+              onPress={() => navigation.navigate('Login')}
+          />
       </View>
     );
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 24,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
   button: {
     alignItems: 'center',
     justifyContent: 'center',

@@ -6,13 +6,13 @@ import { getDatabase } from "firebase/database";
 
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: 'AIzaSyCnXfjykD-9uIkiOm_vcoqMbbpUP2GUoWA',
-    authDomain: 'freewater-68d99.freewater.com',
-    databaseURL: 'https://freewater-68d99.firebaseio.com',
-    projectId: 'freewater-68d99',
-    storageBucket: 'freewater-68d99.appspot.com',
+    apiKey: process.env.firebaseAPIKey,
+    authDomain: process.env.firebaseAuthDomain,
+    databaseURL: process.env.firbaseDatabaseURL,
+    projectId: process.env.firebaseProjectId,
+    storageBucket: process.env.firebaseStorageBucket,
     messagingSenderId: 'sender-id',
-    appId: '1:329124636414:ios:fd3f26ab5b008d52bee7af',
+    appId: process.env.firebaseAppId,
     measurementId: 'G-measurement-id',
 };
 
