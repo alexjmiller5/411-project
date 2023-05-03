@@ -10,7 +10,7 @@ import * as Google from "expo-auth-session/providers/google";
 
 import {auth, baseUrl} from "../firebaseConfig.js"
 
-import { createUser } from './REST.js';
+import { createUser } from '../backend/REST.js';
 
 import axios from 'axios';
 
