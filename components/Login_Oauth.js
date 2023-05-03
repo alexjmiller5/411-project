@@ -10,14 +10,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 import {app, auth, db, baseUrl} from "../firebaseConfig.js"
 
-import {getUserData, createUser, createWaterFountain} from "./REST.js"
+import {getUserData, createUser, createWaterFountain} from "../backend/REST.js"
 
-const iosClientId = "615293419610-opltmphplhp1fgdoub55979h4aiuknui.apps.googleusercontent.com"//"376469778298-9i9pebmddj05js3csip2b4ofpb1pjtca.apps.googleusercontent.com"
-const expoClientId = "615293419610-1tnfdqirv0dk65ud7fc0cvnqscd5n2ri.apps.googleusercontent.com"//"376469778298-d1godfva9j2fg7ioba2kg6drlmgktkiv.apps.googleusercontent.com"
-const androidClientId = ""
-
-
-
+const iosClientId = process.env.iosClientId
+console.log("iosId" + iosClientId)
+const expoClientId = process.env.expoClientId
 
 export default function Login_Oauth({user,navigation}) {
 
@@ -32,9 +29,8 @@ export default function Login_Oauth({user,navigation}) {
   const [signInError, setSignInError] = useState(false)
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: androidClientId,
     iosClientId: iosClientId,
-    expoClientId: expoClientId,
+    expoClientId: expoClientId
   });
 
   useEffect(() => {

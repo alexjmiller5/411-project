@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Polyline, Marker } from "react-native-maps";
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyAjT2oj1XyOv8yIF6RybC7NBWnUnZL-cBo";
+const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
 export default function App() {
   const [location, setLocation] = useState(null);
