@@ -1,2 +1,5 @@
 node_modules
 .expo
+credentials.json
+.envrc
+.components/Login.js
