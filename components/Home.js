@@ -1,26 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, ImageBackground } from 'react-native';
-import Button from './Button';
+import React, {useState} from 'react';
+import { StyleSheet, View, Text, ImageBackground, Button, TouchableOpacity } from 'react-native';
+
+import Custom_Button from './Custom_Button';
+
+import { getRandomQuote } from './qoutes';
 
 export default function Home({user, navigation}) {
 
-  const [userInfo, setUserInfo] = useState(user)
+  const [userInfo, setUserInfo] = useState("");
+  const [quote, setQuote] = useState("");
+  const [author, setAuthor] = useState("");
+
+  async function getQuote() {
+    var resp = await getRandomQuote(0);
+    console.log("\n\nresp: ",resp);
+
+    if (resp != null) {
+      setQuote(resp.content);
+      setAuthor(resp.originator.name);
+      console.log("\n\nresp: ",resp);
+    }
+  }
+
+  getQuote()
 
   async function logout() {
       setUserInfo(null);
       navigation.navigate("Login");
   };
- 
+  
   return (
     <ImageBackground source={require('../assets/bountiful-water.png')} style={styles.backgroundImage}>
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome, {user}!</Text>
+        <Text style={styles.title}>Welcome!</Text>
+        <View>
+          <Text style= {styles.quote}> {quote} </Text>
+          <Text style={styles.author}> - {author} </Text>  
+        </View>
         <View style={styles.buttonsContainer}>
-          <Button label="Find Nearby Fountains" onPress={() => navigation.navigate('WaterMap')} />
-          <Button label="Find Nearest Water Fountain" onPress={() => navigation.navigate('Nearest')} />
-          <Button label="Add Nearby Fountains" />
-          <Button label="Show Eco Stats" />
-          <Button title="Logout" onPress={logout} />        
+          <Custom_Button  
+            title="Find Nearest Water Fountain" 
+            big={true}
+            onPress={() => navigation.navigate('Nearest')} 
+          />
+          <Custom_Button  
+            title="Logout" 
+            big={true}
+            color='red'
+            onPress={logout} 
+          />        
         </View>
       </View>
     </ImageBackground>
@@ -42,6 +70,26 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 32,
+    textAlign: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+  },
+  quote: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 32,
+    textAlign: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 10,
+  },
+  author: {
+    fontSize: 12,
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 32,
