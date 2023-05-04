@@ -3,17 +3,20 @@
 // https://docs.expo.dev/guides/google-authentication/
 
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, Image, View, Button, TextInput, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, Image, View, TextInput, TouchableHighlight } from "react-native";
 import * as Google from "expo-auth-session/providers/google";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import {app, auth, db, baseUrl} from "../firebaseConfig.js"
 
+import Custom_Button from "./Custom_Button.js";
+import Custom_Input from "./Custom_Input.js";
+
 import {getUserData, createUser, createWaterFountain} from "./REST.js"
 
-const iosClientId = "615293419610-opltmphplhp1fgdoub55979h4aiuknui.apps.googleusercontent.com"//"376469778298-9i9pebmddj05js3csip2b4ofpb1pjtca.apps.googleusercontent.com"
-const expoClientId = "615293419610-1tnfdqirv0dk65ud7fc0cvnqscd5n2ri.apps.googleusercontent.com"//"376469778298-d1godfva9j2fg7ioba2kg6drlmgktkiv.apps.googleusercontent.com"
+const iosClientId = "376469778298-9i9pebmddj05js3csip2b4ofpb1pjtca.apps.googleusercontent.com"
+const expoClientId = "376469778298-d1godfva9j2fg7ioba2kg6drlmgktkiv.apps.googleusercontent.com"
 const androidClientId = ""
 
 
@@ -85,76 +88,60 @@ export default function Login_Oauth({user,navigation}) {
 
   return (
     <View style={styles.container}>
-      {signInError === false ? (
-        <View>
-          <Text> Email </Text>
-            <TextInput
-                autoCapitalize="none" 
-                style={styles.input} 
-                onChangeText={(value) => setEmail(value)}
-              />
-            <Text> Password </Text>
-            <TextInput 
-                autoCapitalize="none" 
-                style={styles.input} 
-                secureTextEntry={true} 
-                onChangeText={(value) => setPassword(value)}
-              />
-            <Button
-                title="Login"
-                onPress={logUserIn}
-            />
-          <Button
-            title="Sign in with Google"
-            disabled={!request}
-            onPress={() => {
-              promptAsync();
-            }}
-          />
-          <Button
-            title="Create Account"
-            onPress={() => navigation.navigate('CreateAccount')} 
-          />
-        </View>
-      ): (
-        <View>
-          <Text> Email </Text>
-            <TextInput 
+          <Text style={styles.title}> Login </Text>
+            <Custom_Input
+                label="Email" 
                 autoCapitalize="none"
                 style={styles.input} 
                 onChangeText={(value) => setEmail(value)}
               />
-            <Text> Password </Text>
-            <TextInput 
+            <Custom_Input
+                label="Password" 
                 autoCapitalize="none" 
-                style={styles.input} 
                 secureTextEntry={true} 
                 onChangeText={(value) => setPassword(value)}
               />
-            <Text> Incorrect username or password </Text>
-            <Button
+            {signInError === false ? (
+              <View>
+              </View>
+            ) : ( 
+              <View>
+                <Text style={styles.errorText}> Incorrect username or password </Text>
+              </View>
+            )}
+            <Custom_Button
                 title="Login"
                 onPress={logUserIn}
+                big={false}
             />
-          <Button
+          <Custom_Button
             title="Sign in with Google"
             disabled={!request}
+            big={false}
             onPress={() => {
               promptAsync();
             }}
           />
-          <Button
+          <Custom_Button
             title="Create Account"
             onPress={() => navigation.navigate('CreateAccount')} 
           />
         </View>
-      )}
-      </View>
-  );
+  );        
 }
 
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 24,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  errorText: {
+    color: 'red',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   input: {
     backgroundColor: "white",
     borderColor: "gray",
