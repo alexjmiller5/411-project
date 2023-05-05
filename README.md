@@ -38,3 +38,55 @@
 - The database will store user's login information, contacts the user creates in the form of a name, description and sentiment score.
 - The front end will be a simple messenger application with where the user can create a contact by adding a name and description, they will also be able to view past conversations. 
 - To generate responses we will feed the following prompt to ChatGPT: you are a person described by the following description, *description*, your name is *name*, so far in your conversation I have been nice or mean to you on a scale of *current sentiment score* out of *maximum sentiment score*, respond to the following *user message*
+Installations Used to Create this Project
+
+1. Internet Installations
+
+- Install homebrew
+- Install nvm (not necessary)
+- Download Xcode
+- Go to Xcode > Settings > Location > Select any version of Xcode under Command Line Tools
+
+2. Homebrew Installations
+
+- Install node — brew install node
+- Install watchman — brew install watchman
+- Install cocoa pods — brew install cocoapods
+- Install direnv brew — install direnv
+
+3. Node Installations
+
+- Install npx — npm install -g npx
+- Intall expo — sudo npm install expo-cli --global
+- Install all other dependencies — npm install 
+
+4. Create Accounts
+- Create a Google Cloud Account
+- Create a URI as such
+  - Create a firbase account
+  - Create an expo account
+
+5. Terminal Commands
+
+- npx create-expo-app <project_name>
+- cd <project_name>
+
+6. Expo Installations
+
+- npx expo customize metro.config.js — Create metro.config.js file
+- npx expo install expo-location — Install geo locator  
+- npx expo install @mapbox/polyline — Install poly line
+- npx expo install react-native
+- npx expo install @react-navigation/native
+- npx expo install @react-navigation/native-stack
+- npx expo install expo-auth-session/providers/google
+- npx expo install expo-web-browser
+
+7. Hook direnv to your system's shell
+
+- https://direnv.net/docs/hook.html
+
+8. Run the Project In Terminal
+
+- run direnv allow
+- npx expo start --clear
