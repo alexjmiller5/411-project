@@ -16,7 +16,6 @@ import Custom_Input from "./Custom_Input.js";
 import {getUserData, createUser, createWaterFountain} from "../backend/REST.js"
 
 const iosClientId = process.env.iosClientId
-console.log("iosId" + iosClientId)
 const expoClientId = process.env.expoClientId
 
 export default function Login_Oauth({user,navigation}) {
