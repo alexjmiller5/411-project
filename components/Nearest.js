@@ -23,7 +23,9 @@ export default function App() {
       }
 
       let location = await Location.watchPositionAsync({}, setLocation);
+      console.log(location)
       setLocation(location);
+      console.log(location)
     })();
   }, []);
 
@@ -33,8 +35,8 @@ export default function App() {
 
       // query closet water fountain -- replace these variables with the query
       const destinationCoords = "42.3505,-71.1054";
-      const destinationName = "The fucking GSU";
-      const destinationInstructions = "The GSU water fountain is in the basement, outside the theatre area. There is a staircase and an elevator at the back of the dining room to the right, outside of Basho."
+      const destinationName = "The George Sherman Union (GSU)";
+      const destinationInstructions = "You are currently located at the red pin. Please follow the blue line to the water fountain. The GSU water fountain is in the basement, outside the theatre area. There is a staircase and an elevator at the back of the main dining area to the right, direct across from Basho."
 
       setDestination({
         name: destinationName,
