@@ -8,7 +8,7 @@ import { StyleSheet } from "react-native";
 import Login_Oath from './components/Login_Oauth';
 import CreateAccount from './components/CreateAccount';
 import Home from './components/Home'
-import WaterMap from './components/WaterMap';
+import WaterMap from './extra components/WaterMap';
 import Nearest from './components/Nearest';
 
 const Stack = createNativeStackNavigator();
