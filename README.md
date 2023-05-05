@@ -21,7 +21,6 @@ Installations Used to Create this Project
 - Install all other dependencies — npm install 
 
 4. Create Accounts
- ***Add links
 - Create a Google Cloud Account
 - Create a URI as such
   - Create a firbase account
