@@ -23,7 +23,7 @@ Installations Used to Create this Project
 4. Create Accounts
  ***Add links
 - Create a Google Cloud Account
-- 1. Create a URI as such
+- Create a URI as such
   - Create a firbase account
   - Create an expo account
 
