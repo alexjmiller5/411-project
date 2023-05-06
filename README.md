@@ -1,7 +1,6 @@
 # 411-Project
 
-FreeWater is an iOS app created to connect Users with nearby Water Fountains in an attempt to cutdown on plastic bottle waste. Our app uses Google Firebase's Realtime database to store user accounts and information about water fountains. Written in Javascript using the React Native Expo framework, with a decoupled database architecture through our restful interface. This interface makes used of the Axios package to send https requests to our firebase database and return the results to our Javascript front end. This interface is wrapped in a series of functions in the Rest.js file. The two API's used are the Google Maps Direction API used to generate a route from the user's current location to that of the nearest water fountain. Secondly we make use of the Quotes API and the service RapidAPI, (https://rapidapi.com/martin.svoboda/api/quotes15), to pull random quotes and display them on the home screen. Lastly we use Google Oauth in order for users to be able to easily and quickly login / signup. 
-
+FreeWater is an iOS app created to connect Users with nearby Water Fountains in an attempt to cutdown on plastic bottle waste. Our app uses Google Firebase's Realtime database to store user accounts, and it is written in Javascript using the React Native Expo framework, with a decoupled database architecture through our restful interface. This interface makes used of the Axios package to send https requests to our firebase database and return the results to our Javascript front end. This interface is wrapped in a series of functions in the backend/REST.js file. The two API's used are the Google Maps Direction API used to generate a route from the user's current location to that of the nearest water fountain. Secondly we make use of the Quotes API and the service RapidAPI, (https://rapidapi.com/martin.svoboda/api/quotes15), to pull random quotes and display them on the home screen. Lastly we use Google OAuth in order for users to be able to easily and quickly login / signup. 
 
 ### Four Requirements
 - 2 External APIs
@@ -42,6 +41,8 @@ FreeWater is an iOS app created to connect Users with nearby Water Fountains in 
 - The front end will be a simple messenger application with where the user can create a contact by adding a name and description, they will also be able to view past conversations. 
 - To generate responses we will feed the following prompt to ChatGPT: you are a person described by the following description, *description*, your name is *name*, so far in your conversation I have been nice or mean to you on a scale of *current sentiment score* out of *maximum sentiment score*, respond to the following *user message*
 Installations Used to Create this Project
+
+Project Creation Instructions
 
 1. Internet Installations
 
