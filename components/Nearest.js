@@ -31,17 +31,46 @@ export default function App() {
 
   useEffect(() => {
     if (location != null && location.coords != null) {
-      const originCoords = `${location.coords.latitude},${location.coords.longitude}`;
+      
 
-      // query closet water fountain -- replace these variables with the query
-      const destinationCoords = "42.3505,-71.1054";
-      const destinationName = "The George Sherman Union (GSU)";
-      const destinationInstructions = "You are currently located at the red pin. Please follow the blue line to the water fountain. The GSU water fountain is in the basement, outside the theatre area. There is a staircase and an elevator at the back of the main dining area to the right, direct across from Basho."
+
+      fountains = [
+        ["42.35053,-71.10543", "The George Sherman Union (GSU)", "You are currently located at the red pin. Please follow the blue line to the water fountain. The GSU water fountain is in the basement, outside the theatre area. There is a staircase and an elevator at the back of the main dining area to the right, direct across from Basho."],
+        ["42.34942,-71.10705", "Engineering Product Innovation Center (EPIC).", "You are currently located at the red pin. Please follow the blue line to the water fountain. Enter the building, go up the stairs, enter the doorway on the left, go stright, then left, and the water fountain is located next to the bathroom."],
+        ["42.34957,-71.10563", "Crispy Crepe Cafe", "You are currently located at the red pin. Please follow the blue line to the water fountain. However, this is not a water fountain! This is a cafe! Enter, and politely ask the staff for a cup of water, and they will give you one."],
+        ["42.34927,-71.09830", "Kenmore Classroom Building", "You are currently located at the red pin. Please follow the blue line to the water fountain. Enter the building, turn right until the right end of the building, go left, then right again, and the water fountain is located next to the bathroom"],
+        ["42.34951,-71.09952", "Questrom School of Business", "You are currently located at the red pin. Please follow the blue line to the water fountain. The water fountain is located near the bathroom on the right on the first floor."]
+      ]
+
+      // Initialize variable to track the closest distance
+      let closestDistance = Infinity;
+      let destinationCoords = "";
+      let destinationName = "";
+      let destinationInstructions = ""
+
+      // Loop through each set of coordinates in the list
+      for (let i = 0; i < fountains.length; i++) {
+        // Parse the coordinates string into latitude and longitude
+        const [lat, lng] = fountains[i][0].split(',').map(parseFloat);
+
+        // Calculate the distance between the input coordinates and the current set of coordinates
+        const distance = Math.sqrt((location.coords.latitude - lat) ** 2 + (location.coords.longitude - lng) ** 2);
+
+        // If this distance is closer than the current closest distance, update the closest distance and index
+        if (distance < closestDistance) {
+          destinationCoords = fountains[i][0];
+          destinationName = fountains[i][1];
+          destinationInstructions = fountains[i][2]
+          closestDistance = distance;
+        }
+      }
 
       setDestination({
         name: destinationName,
         instructions: destinationInstructions
       });
+
+      const originCoords = `${location.coords.latitude},${location.coords.longitude}`;
 
       fetch(
         `https://maps.googleapis.com/maps/api/directions/json?origin=${originCoords}&destination=${destinationCoords}&mode=walking&key=${GOOGLE_MAPS_API_KEY}`
