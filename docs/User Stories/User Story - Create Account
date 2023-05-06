@@ -1,0 +1,9 @@
+Story: New user wants to create and log into account
+  1. Start with create account screen, 
+    - Button to log into existing account
+  2. User must input email, then input and confirm new password
+    - Good Path: user account does not exist with that email and password fits criteria --> User will be created
+    - Bad Path: user account exists with email or email / password is invalid
+      Throw error message requesting user to try new email or log into existing account / Throw error message stating which criteria the password did not meet, ask user to choose another password
+  3. User Account then will be created
+  4. Direct User to home screen
