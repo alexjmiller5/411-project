@@ -1,0 +1,4 @@
+We decided to use firebase because you can easily modify the database using Google UI.
+We wanted to use react because we wanted to learn a new framework, and react is highly popular.
+We decided to use axios for the http requests because it worked nicely with firbase.
+The APIs were used because they served our functionality well.
