@@ -1,0 +1,11 @@
+Story: User wants to add local water fountain (which isn't shown in the app) to database for other users to see 
+  1. Ask user to select the building or enter the location (we will manually select the building)
+    - Good Path: location is valid
+      Continue
+    - Bad Path: location is invalid
+      Throw error message and request new location
+  2. User must input the floor and mark the spot on the building map. 
+    - Good Path: data user inputted is valid
+      Create new water fountain in database and then bring user back to home
+    - Bad Path: data user inputted is invalid
+      Request user to reinput data
